@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.streamlit/secrets.toml
+app/.streamlit/secrets.toml
+
+# Large/raw data files
+data/universal_top_spotify_songs.csv
+data/*.zip
+
+# Snowflake/dbt local files
+logs/
+target/
+dbt_packages/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/

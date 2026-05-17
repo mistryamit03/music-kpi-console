@@ -1,0 +1,8 @@
+```txt
+pandas
+numpy
+snowflake-connector-python[pandas]
+python-dotenv
+streamlit
+plotly
+dbt-snowflake
