@@ -55,7 +55,7 @@ CHUNK_SIZE = 100_000
 
 # Set this to True only when Snowflake credentials are ready.
 # Keep False when you only want to test filtering and create the local filtered CSV.
-LOAD_TO_SNOWFLAKE = False
+LOAD_TO_SNOWFLAKE = True
 
 # Snowflake target objects.
 SNOWFLAKE_DATABASE = "MUSIC_KPI"
