@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: raw
+    database: MUSIC_KPI
+    schema: RAW
+    description: "Raw source tables loaded into Snowflake from Python ingestion scripts."
+
+    tables:
+      - name: spotify_charts
+        identifier: SPOTIFY_CHARTS
+        description: "Filtered Spotify chart data from the Kaggle Top Spotify Songs dataset."
+
+        columns:
+          - name: SPOTIFY_ID
+            description: "Unique Spotify track identifier."
+            tests:
+              - not_null
+
+          - name: COUNTRY
+            description: "Spotify chart market country code."
+            tests:
+              - not_null
+
+          - name: SNAPSHOT_DATE
+            description: "Date of the Spotify chart snapshot."
+            tests:
+              - not_null
+
+      - name: campaigns
+        identifier: CAMPAIGNS
+        description: "Synthetic campaign data generated from valid Spotify chart track-country-date combinations."
+
+        columns:
+          - name: CAMPAIGN_ID
+            description: "Unique synthetic campaign identifier."
+            tests:
+              - not_null
+              - unique
+
+          - name: SPOTIFY_ID
+            description: "Spotify track identifier linked to the real chart dataset."
+            tests:
+              - not_null
+
+          - name: COUNTRY
+            description: "Campaign country code."
+            tests:
+              - not_null
+
+          - name: SNAPSHOT_DATE
+            description: "Anchor chart date used for joining campaign data to Spotify chart data."
+            tests:
+              - not_null

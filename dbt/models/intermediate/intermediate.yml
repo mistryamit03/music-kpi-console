@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: int_track_weekly_aggregates
+    description: "Aggregates daily Spotify chart data to weekly track-market level."
+    columns:
+      - name: spotify_id
+        description: "Unique Spotify track identifier."
+        tests:
+          - not_null
+
+      - name: country
+        description: "Spotify chart country code."
+        tests:
+          - not_null
+
+      - name: chart_week
+        description: "Week of the Spotify chart observation."
+        tests:
+          - not_null
+
+      - name: weekly_chart_points
+        description: "Weekly sum of chart points based on daily rank."
+        tests:
+          - not_null
+
+  - name: int_track_weekly_growth
+    description: "Calculates week-over-week chart point growth per track and country."
+    columns:
+      - name: spotify_id
+        tests:
+          - not_null
+
+      - name: country
+        tests:
+          - not_null
+
+      - name: chart_week
+        tests:
+          - not_null
+
+      - name: weekly_chart_points
+        tests:
+          - not_null
+
+  - name: int_track_lifecycle_and_market_flags
+    description: "Adds lifecycle stages, catalog revival flags, market spike flags, and cross-market penetration."
+    columns:
+      - name: spotify_id
+        tests:
+          - not_null
+
+      - name: country
+        tests:
+          - not_null
+
+      - name: chart_week
+        tests:
+          - not_null
+
+      - name: lifecycle_stage
+        description: "Track lifecycle classification based on weekly chart movement."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Debut
+                - Growing
+                - Peak
+                - Declining
+                - Revived
+                - Stable

@@ -1,0 +1,100 @@
+version: 2
+
+models:
+  - name: mart_repertoire_analysis
+    description: "Dashboard-ready repertoire analysis table with lifecycle, market spike, and catalog revival signals."
+    columns:
+      - name: spotify_id
+        tests:
+          - not_null
+
+      - name: country
+        tests:
+          - not_null
+
+      - name: chart_week
+        tests:
+          - not_null
+
+      - name: lifecycle_stage
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Debut
+                - Growing
+                - Peak
+                - Declining
+                - Revived
+                - Stable
+
+      - name: repertoire_signal
+        tests:
+          - not_null
+
+  - name: mart_market_trends
+    description: "Dashboard-ready market trend table aggregated by country and chart week."
+    columns:
+      - name: country
+        tests:
+          - not_null
+
+      - name: chart_week
+        tests:
+          - not_null
+
+      - name: tracks_tracked
+        tests:
+          - not_null
+
+      - name: total_chart_points
+        tests:
+          - not_null
+
+  - name: mart_campaign_performance
+    description: "Dashboard-ready campaign performance table using synthetic campaign data."
+    columns:
+      - name: campaign_id
+        tests:
+          - not_null
+          - unique
+
+      - name: spotify_id
+        tests:
+          - not_null
+
+      - name: country
+        tests:
+          - not_null
+
+      - name: channel
+        tests:
+          - not_null
+
+      - name: spend_eur
+        tests:
+          - not_null
+
+      - name: attributed_streams
+        tests:
+          - not_null
+
+  - name: mart_kpi_catalog
+    description: "KPI catalog explaining computed, synthetic, and documented-only music analytics KPIs."
+    columns:
+      - name: kpi_name
+        tests:
+          - not_null
+          - unique
+
+      - name: kpi_tier
+        tests:
+          - not_null
+
+      - name: data_source_requirement
+        tests:
+          - not_null
+
+      - name: computed_in_project
+        tests:
+          - not_null
