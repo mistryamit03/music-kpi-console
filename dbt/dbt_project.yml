@@ -1,0 +1,31 @@
+
+# This is the dbt project name.
+name: 'music_kpi_console'
+version: '1.0.0'
+
+# This tells dbt which connection profile to use. In dbt Cloud, this links to your Snowflake connection.
+profile: 'default'
+
+# This tells dbt that your SQL transformation files live inside the models/ folder.
+model-paths: ['models']
+analysis-paths: ['analyses']
+test-paths: ['tests']
+seed-paths: ['seeds']
+macro-paths: ['macros']
+snapshot-paths: ['snapshots']
+
+clean-targets:
+  - 'target'
+  - 'dbt_packages'
+
+
+# This tells dbt how to build models inside each folder. Materialized again is When dbt runs this model, create a real physical table in Snowflake.
+
+models:
+  music_kpi_console:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
